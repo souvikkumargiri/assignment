@@ -1,0 +1,28 @@
+#include<iostream>
+#include<map> 
+using namespace std;
+const long M =10000;// modulo
+map<long,long>F;
+
+long bit_string(long n)
+{
+if(F.count(n)) 
+return F[n];
+long k=n/2;
+if(n%2==0) 
+    return F[n]=(bit_string(k)*bit_string(k)+bit_string(k-1)*bit_string(k-1))%M; 
+else 
+    return F[n]=(bit_string(k)*bit_string(k+1) + bit_string(k-1)*bit_string(k))%M;
+	
+}
+main()
+{
+long n,t;
+cin>>t;
+F[0]=F[1]=1;
+while(n,t--)
+{
+  cin>>n;
+  cout << (n==0 ? 1 : bit_string(n+1)) << endl;
+ }
+   }
